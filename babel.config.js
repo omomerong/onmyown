@@ -1,4 +1,7 @@
 module.exports = {
-  presets: ['module:@react-native/babel-preset'],
-  plugins: ['module-resolver'],
+  presets: ['@react-native/babel-preset'],
+  plugins: [['module-resolver']],
+  assumptions: {
+    setPublicClassFields: false,
+  },
 }

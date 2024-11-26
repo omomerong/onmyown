@@ -6,10 +6,12 @@
     "android": "react-native run-android",
     "ios": "react-native run-ios --simulator \"가자\"",
     "lint": "eslint .",
-    "start": "react-native start",
+    "start": "react-native start  --reset-cache",
     "test": "jest"
   },
   "dependencies": {
+    "mobx": "^6.13.5",
+    "mobx-react-lite": "^4.0.7",
     "react": "18.3.1",
     "react-native": "0.75.3",
     "styled-components": "^6.1.13"

@@ -7,6 +7,7 @@
       "@components/*": ["components/*"],
       "@screens/*": ["screens/*"],
       "@public/*": ["public/*"]
-    }
+    },
+    "useDefineForClassFields": true
   }
 }
