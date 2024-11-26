@@ -11,7 +11,7 @@ const CharacterImg = () => {
         alignItems: 'center',
         // backgroundColor: 'blue',
       }}
-      src="/Users/jemerald/project/onmyown/public/images/myduck.png"
+      src="~/public/images/myduck.png"
     />
   )
 }

@@ -1,17 +1,24 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { SafeAreaView } from 'react-native'
 import Streak from '../components/Streak'
 import CharacterImg from '../components/CharacterImg'
 import styled from 'styled-components/native'
 
+// TODO: streak 전역 변수 관리
+
 function Homescreen() {
+  const [dayStreak, setDayStreak] = useState(0)
   return (
     <SafeAreaView>
-      <ImageBox style={{ backgroundColor: 'yellow' }}>
+      <ImageBox style={{ backgroundColor: '#FFF' }}>
         <Title>
-          <Streak dayStreak={9} />
+          <Streak dayStreak={dayStreak} />
         </Title>
         <CharacterImg />
+        <Title>🏃</Title>
+        <Title>💡</Title>
+        <Title>💻</Title>
+        <Title>👥</Title>
       </ImageBox>
     </SafeAreaView>
   )
