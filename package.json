@@ -6,6 +6,7 @@
     "android": "react-native run-android",
     "ios": "react-native run-ios --simulator \"가자\"",
     "lint": "eslint .",
+    "pod": "cd ios && pod install",
     "start": "react-native start  --reset-cache",
     "test": "jest"
   },
