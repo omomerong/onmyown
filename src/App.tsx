@@ -1,11 +1,12 @@
 import React from 'react'
 import { SafeAreaView } from 'react-native'
-import Homescreen from './screens/Homescreen'
+// import Homescreen from './screens/Homescreen'
+import StreakTracker from './screens/StreakTracker'
 
 const App = () => {
   return (
     <SafeAreaView>
-      <Homescreen />
+      <StreakTracker />
     </SafeAreaView>
   )
 }
