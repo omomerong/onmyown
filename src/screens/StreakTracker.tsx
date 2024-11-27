@@ -2,17 +2,25 @@ import React from 'react'
 import { Button, Text, View } from 'react-native'
 import { observer } from 'mobx-react-lite'
 import { storesContext } from '../store'
-import { useTestPosts } from '../api/queries/useTestPosts'
+// import { useTestPosts } from '../api/queries/useTestPosts'
+import { useUser } from '../api/queries/useUser'
 
 const StreakTracker = observer(() => {
   const useStores = () => React.useContext(storesContext)
   const { streakStore } = useStores()
 
-  console.log('streak in View: streak', streakStore.streak)
+  // mock data test query
+  // const { status, data, error, isFetching } = useTestPosts()
+  // if (error) return
 
-  const { status, data, error, isFetching } = useTestPosts()
+  // firestore data test query
+  // useUser().then((res) =>
+  //   res.map((re) => console.log('re: ', re.data().streak)),
+  // )
 
-  if (error) return
+  // firestore data test react query
+  const { status, data, error, isFetching } = useUser()
+  data?.map((res) => console.log('streak in View:', res.data().streak))
 
   return (
     <View
@@ -23,10 +31,6 @@ const StreakTracker = observer(() => {
         justifyContent: 'center',
       }}
     >
-      {/* TODO: Post List */}
-      <Text style={{ fontSize: 30 }}>
-        {data === undefined ? 'title' : data[0].title}
-      </Text>
       <Text style={{ fontSize: 30 }}>🔥 Streak: {streakStore.streak}</Text>
       <Text style={{ fontSize: 30 }}>
         🧊 Freeze Chance: {streakStore.freezeChance}
