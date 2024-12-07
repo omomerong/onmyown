@@ -4,14 +4,13 @@ import { Image, View } from 'react-native'
 const CharacterImg = () => {
   return (
     <Image
+      source={require('../public/images/myduck.png')}
       style={{
-        width: 100,
-        height: 220,
+        width: 105,
+        height: 225,
         justifyContent: 'center',
         alignItems: 'center',
-        // backgroundColor: 'blue',
       }}
-      src="~/public/images/myduck.png"
     />
   )
 }

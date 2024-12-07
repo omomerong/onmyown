@@ -2,12 +2,12 @@
   "extends": "@react-native/typescript-config/tsconfig.json",
   "compilerOptions": {
     "baseUrl": "./src",
-    "paths": {
-      "@/*": ["./*"],
-      "@components/*": ["components/*"],
-      "@screens/*": ["screens/*"],
-      "@public/*": ["public/*"]
-    },
+    // "paths": {
+    //   "@/*": ["./src/*"],
+    //   "@components/*": ["./src/components/*"],
+    //   "@screens/*": ["./src/screens/*"],
+    //   "@public/*": ["./src/public/*"]
+    // },
     "useDefineForClassFields": true
   }
 }
