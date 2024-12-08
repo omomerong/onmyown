@@ -1,12 +1,13 @@
-import React from 'react'
+import Reac, { useState, useContext } from 'react'
 import { Button, Text, View } from 'react-native'
 import { observer } from 'mobx-react-lite'
 import { storesContext } from '../store'
 // import { useTestPosts } from '../api/queries/useTestPosts'
 import { useUser } from '../api/queries/useUser'
+import { TodoTemplate } from '../components/TodoTemplate'
 
 const StreakTracker = observer(() => {
-  const useStores = () => React.useContext(storesContext)
+  const useStores = () => useContext(storesContext)
   const { streakStore } = useStores()
 
   // mock data test query
@@ -19,30 +20,50 @@ const StreakTracker = observer(() => {
   // )
 
   // firestore data test react query
-  const { status, data, error, isFetching } = useUser()
-  data?.map((res) => console.log('streak in View:', res.data().streak))
+  // const { status, data, error, isFetching } = useUser()
+  // data?.map((res) => console.log('streak in View:', res.data().streak))
+
+  const [todoCount, setTodoCount] = useState(1)
+
+  // ISSUE: 이렇게 하면 새로운 투두 추가할 때마다 리렌더링돼서 데이터 날라감
+  const handleEnterPress = () => {
+    console.log('todoCount', todoCount)
+    setTodoCount((prev) => prev + 1)
+  }
+
+  const handleBackspacePress = () => {
+    setTodoCount((prev) => prev - 1)
+  }
 
   return (
-    <View
-      style={{
-        width: '100%',
-        height: '100%',
-        alignItems: 'center',
-        justifyContent: 'center',
-      }}
-    >
-      <Text style={{ fontSize: 30 }}>🔥 Streak: {streakStore.streak}</Text>
-      <Text style={{ fontSize: 30 }}>
-        🧊 Freeze Chance: {streakStore.freezeChance}
-      </Text>
-      <Button
+    <View>
+      {/* <Text style={{ fontSize: '50%' }}>🔥 Streak: {streakStore.streak}</Text>
+      <Text>🧊 Freeze Chance: {streakStore.freezeChance}</Text> */}
+
+      {[...Array(todoCount)].map((_, index) => (
+        <>
+          <TodoTemplate
+            key={index}
+            index={index}
+            onEnterPress={() => {
+              handleEnterPress()
+            }}
+            onBackspacePress={() => {
+              handleBackspacePress()
+            }}
+            autoFocus={index === 0 ? false : true}
+          />
+        </>
+      ))}
+
+      {/* <Button
         onPress={() => streakStore.completeTask()}
         title="Complete Task"
       />
       <Button
         onPress={() => streakStore.failToExtendStreak()}
         title="Fail to Extend Streak"
-      />
+      /> */}
     </View>
   )
 })

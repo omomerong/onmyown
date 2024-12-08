@@ -8,8 +8,6 @@ const CharacterImg = () => {
       style={{
         width: 105,
         height: 225,
-        justifyContent: 'center',
-        alignItems: 'center',
       }}
     />
   )
