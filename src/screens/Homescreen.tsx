@@ -59,7 +59,7 @@ function HomeScreen() {
       }}
     >
       <WebView
-        source={{ uri: 'http://192.168.0.24:3000' }} // TODO: uri 변수 처리
+        source={{ uri: 'http://localhost:3000' }} // TODO: uri 변수 처리
         style={{ flex: 1 }}
       />
       <Button
