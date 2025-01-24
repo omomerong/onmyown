@@ -6,7 +6,7 @@ import { storesContext } from '../store'
 import { useUser } from '../api/queries/useUser'
 import { TodoTemplate } from '../components/TodoTemplate'
 
-const StreakTracker = observer(() => {
+const StreakTrackerScreen = observer(() => {
   const useStores = () => useContext(storesContext)
   const { streakStore } = useStores()
 
@@ -36,24 +36,22 @@ const StreakTracker = observer(() => {
   }
 
   return (
-    <View>
+    <View style={{ flex: 1, backgroundColor: 'white', padding: 20 }}>
       {/* <Text style={{ fontSize: '50%' }}>🔥 Streak: {streakStore.streak}</Text>
       <Text>🧊 Freeze Chance: {streakStore.freezeChance}</Text> */}
 
       {[...Array(todoCount)].map((_, index) => (
-        <>
-          <TodoTemplate
-            key={index}
-            index={index}
-            onEnterPress={() => {
-              handleEnterPress()
-            }}
-            onBackspacePress={() => {
-              handleBackspacePress()
-            }}
-            autoFocus={index === 0 ? false : true}
-          />
-        </>
+        <TodoTemplate
+          key={index}
+          index={index}
+          onEnterPress={() => {
+            handleEnterPress()
+          }}
+          onBackspacePress={() => {
+            handleBackspacePress()
+          }}
+          autoFocus={index === 0 ? false : true}
+        />
       ))}
 
       {/* <Button
@@ -68,4 +66,4 @@ const StreakTracker = observer(() => {
   )
 })
 
-export default StreakTracker
+export default StreakTrackerScreen
