@@ -5,18 +5,25 @@
   "scripts": {
     "android": "react-native run-android",
     "ios": "react-native run-ios --simulator \"가자\"",
+    "ios:myphone": "react-native run-ios --device \"jejemerong의 iPhone\"",
     "lint": "eslint .",
     "pod": "cd ios && pod install",
     "start": "react-native start  --reset-cache",
     "test": "jest"
   },
   "dependencies": {
+    "@react-navigation/elements": "^2.2.4",
+    "@react-navigation/native": "^7.0.13",
+    "@react-navigation/native-stack": "^7.1.14",
     "@tanstack/react-query": "^5.61.5",
     "firebase": "^11.0.2",
     "mobx": "^6.13.5",
     "mobx-react-lite": "^4.0.7",
     "react": "18.3.1",
     "react-native": "0.75.3",
+    "react-native-safe-area-context": "^5.0.0",
+    "react-native-screens": "^4.3.0",
+    "react-native-webview": "^13.13.1",
     "styled-components": "^6.1.13"
   },
   "devDependencies": {
