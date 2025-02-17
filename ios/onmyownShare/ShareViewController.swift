@@ -14,9 +14,9 @@ class ShareViewController: UIViewController {
         super.viewDidLoad()
         
         // UI 설정
-        textView.frame = self.view.bounds
+        textView.frame = CGRect(x: 20, y: 200, width: self.view.bounds.width - 40, height: self.view.bounds.height - 220) // 위치 및 크기 조정
         textView.font = UIFont.systemFont(ofSize: 16)
-        textView.contentInset = UIEdgeInsets(top: 100, left: 20, bottom: 20, right: 20) // 여백 추가
+        textView.contentInset = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20) // 여백 추가
         self.view.addSubview(textView)
         
         let imageView = UIImageView()
@@ -25,9 +25,30 @@ class ShareViewController: UIViewController {
         imageView.image = UIImage(named: "myduck") // 이미지 이름에 맞게 변경
         self.view.addSubview(imageView)
         
+        let button1 = UIButton(type: .system)
+        button1.setTitle("📗 각자도생 스터디", for: .normal)
+        button1.frame = CGRect(x: (self.view.frame.width - 200) / 2, y: 320, width: 200, height: 50) // 버튼 위치 및 크기 조정
+        button1.layer.cornerRadius = 10 // 모서리 둥글게
+        button1.layer.borderWidth = 1 // 테두리 두께
+        button1.layer.borderColor = UIColor.lightGray.cgColor // 테두리 색상
+        button1.backgroundColor = UIColor.white // 배경색
+        button1.setTitleColor(UIColor.black, for: .normal) // 텍스트 색상
+        button1.addTarget(self, action: #selector(console), for: .touchUpInside)
+        self.view.addSubview(button1)
+
+        let button2 = UIButton(type: .system)
+        button2.setTitle("🇩🇪 듀오링고", for: .normal)
+        button2.frame = CGRect(x: (self.view.frame.width - 200) / 2, y: 380, width: 200, height: 50) // 버튼 위치 및 크기 조정
+        self.view.addSubview(button2)
+
+        let button3 = UIButton(type: .system)
+        button3.setTitle("💪 헬스장 출석", for: .normal)
+        button3.frame = CGRect(x: (self.view.frame.width - 200) / 2, y: 440, width: 200, height: 50) // 버튼 위치 및 크기 조정
+        self.view.addSubview(button3)
+        
         // 네비게이션 바 추가
         let navigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 56))
-        let navigationItem = UINavigationItem(title: "루틴 공유하기")
+        let navigationItem = UINavigationItem(title: "루틴 등록하기")
         navigationItem.rightBarButtonItem = {
             let button = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveButtonTapped))
             button.tintColor = UIColor(red: 1.0, green: 202/255.0, blue: 90/255.0, alpha: 1.0)
@@ -40,10 +61,17 @@ class ShareViewController: UIViewController {
         }()
         navigationBar.setItems([navigationItem], animated: false)
         self.view.addSubview(navigationBar)
+
+        self.view.backgroundColor = UIColor.white
         
         // extensionContext를 통해 공유 데이터 처리
         handleIncomingContent()
     }
+  
+  @objc func  console(){
+    print("각자도생 스터디")
+  }
+  
 
     func handleIncomingContent() {
         // 공유된 항목 가져오기
@@ -104,10 +132,10 @@ class ShareViewController: UIViewController {
         }
         
         // Extension 종료 후 메인 앱으로 이동
-        self.extensionContext?.completeRequest(returningItems: nil) { _ in
-            let url = URL(string: "onmyown://")!
-            _ = self.openURL(url)
-        }
+         self.extensionContext?.completeRequest(returningItems: nil) { _ in
+             let url = URL(string: "onmyown://")!
+             _ = self.openURL(url)
+         }
     }
     
     @objc func cancel() {
