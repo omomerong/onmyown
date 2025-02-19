@@ -25,9 +25,11 @@ class ShareViewController: UIViewController {
         imageView.image = UIImage(named: "myduck") // 이미지 이름에 맞게 변경
         self.view.addSubview(imageView)
         
+        // 버튼 뷰
         let button1 = UIButton(type: .system)
         button1.setTitle("📗 각자도생 스터디", for: .normal)
-        button1.frame = CGRect(x: (self.view.frame.width - 200) / 2, y: 320, width: 200, height: 50) // 버튼 위치 및 크기 조정
+        button1.frame = CGRect(x: (self.view.frame.width - 200) / 2, y: 320, width: 200, height: 50) 
+        // 버튼 위치 및 크기 조정
         button1.layer.cornerRadius = 10 // 모서리 둥글게
         button1.layer.borderWidth = 1 // 테두리 두께
         button1.layer.borderColor = UIColor.lightGray.cgColor // 테두리 색상
@@ -39,16 +41,28 @@ class ShareViewController: UIViewController {
         let button2 = UIButton(type: .system)
         button2.setTitle("🇩🇪 듀오링고", for: .normal)
         button2.frame = CGRect(x: (self.view.frame.width - 200) / 2, y: 380, width: 200, height: 50) // 버튼 위치 및 크기 조정
+        button2.layer.cornerRadius = 10 // 모서리 둥글게
+        button2.layer.borderWidth = 1 // 테두리 두께
+        button2.layer.borderColor = UIColor.lightGray.cgColor // 테두리 색상
+        button2.backgroundColor = UIColor.white // 배경색
+        button2.setTitleColor(UIColor.black, for: .normal) // 텍스트 색상
+        button2.addTarget(self, action: #selector(console), for: .touchUpInside)
         self.view.addSubview(button2)
 
         let button3 = UIButton(type: .system)
         button3.setTitle("💪 헬스장 출석", for: .normal)
-        button3.frame = CGRect(x: (self.view.frame.width - 200) / 2, y: 440, width: 200, height: 50) // 버튼 위치 및 크기 조정
+        button3.frame = CGRect(x: (self.view.frame.width - 200) / 2, y: 440, width: 200, height: 50)
+        button3.layer.cornerRadius = 10 // 모서리 둥글게
+        button3.layer.borderWidth = 1 // 테두리 두께
+        button3.layer.borderColor = UIColor.lightGray.cgColor // 테두리 색상
+        button3.backgroundColor = UIColor.white // 배경색
+        button3.setTitleColor(UIColor.black, for: .normal) // 텍스트 색상
+        button3.addTarget(self, action: #selector(console), for: .touchUpInside)
         self.view.addSubview(button3)
         
         // 네비게이션 바 추가
         let navigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 56))
-        let navigationItem = UINavigationItem(title: "루틴 등록하기")
+        let navigationItem = UINavigationItem(title: "어떤 챌린지에 등록할까?")
         navigationItem.rightBarButtonItem = {
             let button = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveButtonTapped))
             button.tintColor = UIColor(red: 1.0, green: 202/255.0, blue: 90/255.0, alpha: 1.0)
@@ -69,7 +83,7 @@ class ShareViewController: UIViewController {
     }
   
   @objc func  console(){
-    print("각자도생 스터디")
+    print("각자도생 스터디") // TODO: 누른 버튼 props 가져오기
   }
   
 
@@ -96,7 +110,15 @@ class ShareViewController: UIViewController {
                                 }
                             }
                         }
-                    }
+                    } else if provider.hasItemConformingToTypeIdentifier("public.image") {
+                      provider.loadItem(forTypeIdentifier: "public.image", options: nil) { [weak self] (url, error) in
+                          if let sharedURL = url as? URL {
+                              DispatchQueue.main.async {
+                                  self?.textView.text = sharedURL.absoluteString
+                              }
+                          }
+                      }
+                  }
                 }
             }
         }
@@ -113,19 +135,19 @@ class ShareViewController: UIViewController {
         }
 
         // 데이터를 UserDefaults에 저장
-        let userDefaults = UserDefaults.standard
+        let userDefaults = UserDefaults(suiteName: "group.org.reactjs.native.example.onmyown.Share")
         print("UserDefaults 접근 성공")
         
         // UserDefaults에 데이터 저장
         do {
-            userDefaults.set(text, forKey: "shared_text") // UserDefaults를 사용하여 데이터 저장
+            userDefaults?.set(text, forKey: "shared_text") // UserDefaults를 사용하여 데이터 저장
             print("데이터가 성공적으로 저장되었습니다.")
         } catch {
             print("데이터 저장 중 오류 발생: \(error.localizedDescription)")
         }
         
         // 저장된 데이터 확인
-        if let savedText = userDefaults.string(forKey: "shared_text") {
+        if let savedText = userDefaults?.string(forKey: "shared_text") {
             print("저장된 값: \(savedText)")
         } else {
             print("저장된 값이 없습니다.")
@@ -153,18 +175,5 @@ class ShareViewController: UIViewController {
             responder = responder?.next
         }
         return false
-    }
-}
-
-class Settings {
-    static func set(_ value: Any, forKey key: String) throws {
-        let userDefaults = UserDefaults(suiteName: "group.org.reactjs.native.example.onmyown.Share")
-        userDefaults?.set(value, forKey: key)
-        userDefaults?.synchronize()
-    }
-
-    static func get(_ key: String) throws -> Any? {
-        let userDefaults = UserDefaults(suiteName: "group.org.reactjs.native.example.onmyown.Share")
-        return userDefaults?.object(forKey: key)
     }
 }
