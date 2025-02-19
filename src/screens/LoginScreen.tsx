@@ -67,6 +67,7 @@ const LoginScreen = () => {
           justifyContent: 'center',
           width: 220,
           height: 45,
+          marginTop: 10,
           backgroundColor: '#000',
           borderStyle: 'solid 5px black',
           borderRadius: 7,
