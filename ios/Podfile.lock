@@ -1237,7 +1237,7 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
-  - react-native-safe-area-context (5.1.0):
+  - react-native-safe-area-context (5.0.0):
     - React-Core
   - react-native-webview (13.13.1):
     - DoubleConversion
@@ -1522,7 +1522,7 @@ PODS:
     - React-utils (= 0.75.3)
   - RNAppleAuthentication (2.4.0):
     - React-Core
-  - RNScreens (4.5.0):
+  - RNScreens (4.3.0):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -1792,7 +1792,7 @@ SPEC CHECKSUMS:
   React-logger: 4072f39df335ca443932e0ccece41fbeb5ca8404
   React-Mapbuffer: 714f2fae68edcabfc332b754e9fbaa8cfc68fdd4
   React-microtasksnativemodule: 4943ad8f99be8ccf5a63329fa7d269816609df9e
-  react-native-safe-area-context: 58a7ee5b991cad572ea8be600012a859a79c801e
+  react-native-safe-area-context: 48220ec990e5ff9ffac51eddaa7ad2579575b005
   react-native-webview: 24d0f951d301c59fe8ac760b4a9c0a20731dff45
   React-nativeconfig: 4a9543185905fe41014c06776bf126083795aed9
   React-NativeModulesApple: 0506da59fc40d2e1e6e12a233db5e81c46face27
@@ -1821,7 +1821,7 @@ SPEC CHECKSUMS:
   ReactCodegen: ff95a93d5ab5d9b2551571886271478eaa168565
   ReactCommon: 289214026502e6a93484f4a46bcc0efa4f3f2864
   RNAppleAuthentication: e00c76acb03351f5544373c78fa7f359bef6d5d3
-  RNScreens: b51f1a8be0dd7bb470b757f6cca8ba878acb2000
+  RNScreens: b03d696c70cc5235ce4587fcc27ae1a93a48f98c
   SocketRocket: abac6f5de4d4d62d24e11868d7a2f427e0ef940d
   Yoga: 1354c027ab07c7736f99a3bef16172d6f1b12b47
 

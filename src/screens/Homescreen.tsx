@@ -28,7 +28,8 @@ function HomeScreen() {
   const navigation = useNavigation()
 
   const appGroupId = 'group.org.reactjs.native.example.onmyown.Share'
-  const uri = 'http://localhost:3000' // TODO: uri 환경변수 처리 => https://blog-omo.vercel.app/
+  // TODO: uri 환경변수 처리 => https://blog-omo.vercel.app/
+  const uri = 'http://localhost:3000'
 
   useEffect(() => {
     // 앱이 백그라운드일 때 딥링크로 열린 경우
@@ -54,12 +55,12 @@ function HomeScreen() {
     }
   }, [])
 
-  return (
-    <WebView
-      source={{ uri }}
-      style={{ flex: 1, backgroundColor: isDarkTheme ? 'black' : 'white' }}
-    />
-  )
+  // return (
+  //   <WebView
+  //     source={{ uri }}
+  //     style={{ flex: 1, backgroundColor: isDarkTheme ? 'black' : 'white' }}
+  //   />
+  // )
 
   return (
     <SafeAreaView
