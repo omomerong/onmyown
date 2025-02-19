@@ -13,6 +13,7 @@ import styled from 'styled-components/native'
 import { useNavigation } from '@react-navigation/native'
 import { Button } from '@react-navigation/elements'
 import WebView from 'react-native-webview'
+import { getItem } from '../../NativeModules/RCTUserDefaultsModule'
 
 function HomeScreen() {
   const theme = useColorScheme()
@@ -34,12 +35,18 @@ function HomeScreen() {
     Linking.getInitialURL().then((url) => {
       if (url) {
         console.log('백그라운드')
+        getItem('shared_text').then((text) => {
+          console.log('shared_text in background: ', text)
+        })
       }
     })
 
     // 앱이 포그라운드일 때 딥링크로 열린 경우
     const subscription = Linking.addEventListener('url', ({ url }) => {
       console.log('포그라운드')
+      getItem('shared_text').then((text) => {
+        console.log('shared_text in foreground: ', text)
+      })
     })
 
     return () => {

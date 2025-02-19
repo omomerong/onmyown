@@ -3,12 +3,18 @@ import HomeScreen from '../screens/HomeScreen'
 import LoginScreen from '../screens/LoginScreen'
 import StreakTrackerScreen from '../screens/StreakTrackerScreen'
 import { createStaticNavigation } from '@react-navigation/native'
+import TestScreen from '../screens/TestScreen'
 
 const RootStack = createNativeStackNavigator({
   // TODO: login state 에 따라 분기 처리 가능한지
-  initialRouteName: 'Home',
+  initialRouteName: 'Test',
+  // initialRouteName: 'Home',
   // initialRouteName: 'Login',
   screens: {
+    Test: {
+      screen: TestScreen,
+      options: { headerShown: false },
+    },
     Home: {
       screen: HomeScreen,
       options: { headerShown: false },
